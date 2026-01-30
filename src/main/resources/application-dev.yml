@@ -20,3 +20,4 @@ short-url:
   allowed-chars: ${ALLOWED_CHARS:abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789}
   key-length: ${SHORT_URL_LENGTH:6}
   std-expiration-minutes: ${STD_EXPIRATION_MINUTES:60}
+  hash-salt-secret: ${HASH_SALT_SECRET:my-secret-salt-for-development}

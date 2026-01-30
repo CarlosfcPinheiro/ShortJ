@@ -1,19 +1,20 @@
 package com.study.shortJ.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
+
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class CreateShortUrlDTO {
+public class ResponseShortUrlDTO {
     private String originalUrl;
-
-    @JsonProperty("customAlias")
+    private String shortUrl;
     private String alias;
-    private Long expirationMinutes;
+    private LocalDateTime expirationDate;
 }

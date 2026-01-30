@@ -1,16 +1,17 @@
 package com.study.shortJ.config;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.stereotype.Component;
 
 @Getter
 @Setter
-@Component
+@NoArgsConstructor
 @ConfigurationProperties(prefix = "short-url")
-public class UrlShortenerConfig {
+public class ShortUrlConfig {
     private String allowedChars;
     private int keyLength;
-    private int StdExpirationMinutes;
+    private int stdExpirationMinutes;
+    private String hashSaltSecret;
 }

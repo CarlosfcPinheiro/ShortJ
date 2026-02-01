@@ -1,6 +1,6 @@
 package com.study.shortJ.service;
 
-import com.study.shortJ.exception.custom.CustomAliasException;
+import com.study.shortJ.exception.custom.UrlMappingNotFoundOrExpiredException;
 import com.study.shortJ.model.UrlMapping;
 import com.study.shortJ.repository.UrlMappingRepository;
 import org.springframework.stereotype.Service;
@@ -24,6 +24,6 @@ public class UrlMappingService {
     private UrlMapping getUrlMappingByAlias(String alias) {
         return urlMappingRepository
                 .findByAlias(alias)
-                .orElseThrow(() -> new CustomAliasException("No short url found for alias: " + alias));
+                .orElseThrow(() -> new UrlMappingNotFoundOrExpiredException("No short url found for alias: " + alias));
     }
 }

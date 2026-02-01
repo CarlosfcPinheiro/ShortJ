@@ -7,6 +7,7 @@ import com.study.shortJ.exception.model.ApiResponseError;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.ModelAndView;
@@ -15,6 +16,13 @@ import org.springframework.web.servlet.ModelAndView;
 public class GlobalExceptionHandler {
 
     private static final Logger logger = LoggerFactory.getLogger(GlobalExceptionHandler.class);
+
+    // Handle validation errors from @Valid annotation
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<ApiResponse> handleValidationException(MethodArgumentNotValidException e) {
+        ApiResponse response = new ApiResponse("Validation failed", false, 400);
+        return ResponseEntity.status(400).body(response);
+    }
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ApiResponseError> handleGenericException(Exception e){
@@ -32,9 +40,7 @@ public class GlobalExceptionHandler {
     // Redirect to a custom error page for URL not found or expired
     @ExceptionHandler(UrlMappingNotFoundOrExpiredException.class)
     public ModelAndView handleUrlMappingNotFoundOrExpiredException(UrlMappingNotFoundOrExpiredException e){
-        ModelAndView modelAndView = new ModelAndView("NotFoundOrExpired");
-        modelAndView.addObject("errorMessage", e.getMessage());
-        return modelAndView;
+        return new ModelAndView("NotFoundOrExpired");
     }
 
 }

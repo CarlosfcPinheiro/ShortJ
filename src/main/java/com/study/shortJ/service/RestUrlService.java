@@ -8,6 +8,7 @@ import com.study.shortJ.mapper.UrlMappingMapper;
 import com.study.shortJ.model.UrlMapping;
 import com.study.shortJ.repository.UrlMappingRepository;
 import com.study.shortJ.utils.UrlShortenerHelper;
+import org.hibernate.validator.internal.constraintvalidators.hv.URLValidator;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

@@ -5,6 +5,7 @@ import com.study.shortJ.dto.ResponseShortUrlDTO;
 import com.study.shortJ.model.UrlMapping;
 import com.study.shortJ.service.RestUrlService;
 import com.study.shortJ.exception.model.ApiResponse;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,7 +22,7 @@ public class RestUrlController {
     }
 
     @PostMapping("/shorten")
-    public ResponseEntity<ApiResponse> createUrl(@RequestBody CreateShortUrlDTO createShortUrlDTO) {
+    public ResponseEntity<ApiResponse> createUrl(@RequestBody @Valid CreateShortUrlDTO createShortUrlDTO) {
         ResponseShortUrlDTO urlMapping = restUrlService.createShortUrl(createShortUrlDTO);
         ApiResponse response = new ApiResponse("Short URL created successfully", true, 201, urlMapping);
         return ResponseEntity.status(201).body(response);

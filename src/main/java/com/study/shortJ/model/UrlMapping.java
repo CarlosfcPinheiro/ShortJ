@@ -21,7 +21,7 @@ public class UrlMapping {
     @Column(name = "original_url")
     private String originalUrl;
 
-    @Column(name = "alias", unique = true)
+    @Column(name = "alias", nullable = false, unique = true)
     private String alias;
 
     @Column(name = "expiration_date")

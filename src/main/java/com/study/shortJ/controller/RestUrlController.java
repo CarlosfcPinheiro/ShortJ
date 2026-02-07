@@ -4,7 +4,7 @@ import com.study.shortJ.dto.CreateShortUrlDTO;
 import com.study.shortJ.dto.ResponseShortUrlDTO;
 import com.study.shortJ.model.UrlMapping;
 import com.study.shortJ.service.RestUrlService;
-import com.study.shortJ.exception.model.ApiResponse;
+import com.study.shortJ.infra.ApiResponse;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -40,8 +40,8 @@ public class RestUrlController {
     }
 
     @GetMapping("/{alias}")
-    public ResponseEntity<ApiResponse> getUrlByAlias(@PathVariable String alias){
-        UrlMapping url = restUrlService.getUrlMappingByAlias(alias);
+    public ResponseEntity<ApiResponse> getUrlMappingByAlias(@PathVariable String alias){
+        ResponseShortUrlDTO url = restUrlService.getUrlMappingByAlias(alias);
         ApiResponse response = new ApiResponse("Fetched URL by alias successfully", true, 200, url);
         return ResponseEntity.status(200).body(response);
     }

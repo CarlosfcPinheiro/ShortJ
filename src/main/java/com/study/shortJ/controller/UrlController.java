@@ -2,7 +2,7 @@ package com.study.shortJ.controller;
 
 import com.study.shortJ.dto.CreateShortUrlDTO;
 import com.study.shortJ.dto.ResponseShortUrlDTO;
-import com.study.shortJ.exception.model.ApiResponse;
+import com.study.shortJ.infra.ApiResponse;
 
 import com.study.shortJ.service.RestUrlService;
 import com.study.shortJ.service.UrlMappingService;
@@ -30,6 +30,8 @@ public class UrlController {
         return ResponseEntity.status(201).body(response);
     }
 
+    //TODO Refactor to return 302 Found with Location header instead of RedirectView
+    // RedirectView is ideal?
     @GetMapping("/{alias}")
     public RedirectView redirect(@PathVariable String alias){
         String originalUrl = urlMappingService.getOriginalUrl(alias);

@@ -1,4 +1,4 @@
-package com.study.shortJ.exception.model;
+package com.study.shortJ.infra;
 
 import lombok.Getter;
 import lombok.Setter;

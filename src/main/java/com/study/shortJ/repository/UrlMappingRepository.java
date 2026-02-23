@@ -14,7 +14,9 @@ public interface UrlMappingRepository extends JpaRepository<UrlMapping, Long> {
     @Query("SELECT u FROM tb_url_mapping u WHERE u.expirationDate > CURRENT_TIMESTAMP AND u.alias = :alias")
     Optional<UrlMapping> findByAlias(String alias);
 
-    @Query(value = "SELECT NEXTVAL('url_mapping_seq')", nativeQuery = true)
+    @Query(
+            value = "SELECT nextval('url_mapping_seq');",
+            nativeQuery = true)
     Long getNextSequentialId();
 
     void deleteByExpirationDateBefore(LocalDateTime date);
